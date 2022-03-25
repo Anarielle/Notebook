@@ -6,81 +6,42 @@ using System.Threading.Tasks;
 
 namespace Notebook
 {
-    internal class Note
+    public class Note
     {
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
-        public string MiddleName { get; set; }
-        private int phoneNumber;
-
-        public int PhoneNumber
-        {
-            get { return phoneNumber; }
-            set { phoneNumber = value; }
-        }
-
+        public string Surname { get; set; }
+        public string Name { get; set; }
+        public string SecondName { get; set; }
+        public string Phone { get; set; }
         public string Country { get; set; }
-        public DateTime Birthday { get; set; }
+        public string DateOfBirth { get; set; }
         public string Organization { get; set; }
         public string Position { get; set; }
-        public int MyProperty { get; set; }
-        public string Notes { get; set; }
+        public string Remark { get; set; }
+        public int Id { get; set; }
 
-        public void CreateNote()
+        public static Dictionary<string, Validation> fieldsValidation = new Dictionary<string, Validation>()
         {
-            Console.WriteLine("Введите фамилию:");
-            LastName = Console.ReadLine();
-            while (string.IsNullOrEmpty(LastName))
-            {
-                Console.WriteLine("Фамилия не введена, попробуйте ещё раз:");
-                LastName = Console.ReadLine();
-            }
+            {"Name", new Validation(true, 1, 20, "абвгдеёжзийклмнопрстуфхцчшщъыьэюя -АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ".ToCharArray()) },
+            {"Surname", new Validation(true, 1, 20, "абвгдеёжзийклмнопрстуфхцчшщъыьэюя -АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ".ToCharArray()) },
+            {"SecondName", new Validation(false, 0, 20, "абвгдеёжзийклмнопрстуфхцчшщъыьэюя -АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ".ToCharArray()) },
+            {"Phone", new Validation(true, 5, 11, "0123456789".ToCharArray()) },
+            {"Country", new Validation(false, 0, 20, "абвгдеёжзийклмнопрстуфхцчшщъыьэюя -АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ".ToCharArray()) },
+            {"DateOfBirth", new Validation(false, 10, 10, "0123456789.".ToCharArray()) },
+            {"Organization", new Validation(false, 0, 20, "абвгдеёжзийклмнопрстуфхцчшщъыьэюя -АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ".ToCharArray()) },
+            {"Position", new Validation(false, 0, 20, "абвгдеёжзийклмнопрстуфхцчшщъыьэюя -АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ".ToCharArray()) },
+            {"Remark", new Validation(false, 0, 200, "абвгдеёжзийклмнопрстуфхцчшщъыьэюя -АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ0123456789,.?!()\\+=№@'\"&$;:^".ToCharArray()) },
+            {"Id", new Validation(true, 1, 10, "0123456789".ToCharArray()) },
+        };
 
-            Console.WriteLine("Введите имя:");
-            FirstName = Console.ReadLine();
-            while (string.IsNullOrEmpty(FirstName))
-            {                
-                Console.WriteLine("Имя не введено, попробуйте ещё раз:");
-                FirstName = Console.ReadLine();
-            }
-
-            Console.WriteLine("Введите номер телефона:");
-            bool tryParse = int.TryParse(Console.ReadLine(), out phoneNumber);
-            while (phoneNumber == 0 || tryParse);
-            {                
-                Console.WriteLine("Номер введен некорректно, попробуйте ещё раз:");
-                tryParse = int.TryParse(Console.ReadLine(), out phoneNumber);
-            }
-
-            Console.WriteLine("Введите страну:");
-            Country = Console.ReadLine();
-            while (string.IsNullOrEmpty(Country))
-            {
-                Console.WriteLine("Вы не ввели страну, попробуйте ещё раз:");
-                Country = Console.ReadLine();
-            }
-
-
+        public override string ToString()
+        {
+            return $"\n\tID: {Id}\n\tФамилия: {Surname}\n\tИмя: {Name}\n\tОтчество: {SecondName}\n\tНомер телефона: {Phone}\n\t" +
+                $"Страна: {Country}\n\tДата рождения: {DateOfBirth}\n\tОрганизация: {Organization}\n\tДолжность: {Position}\n\tПримечание: {Remark}";
         }
 
-        public void EditNote()
+        public string ToShortString()
         {
-
-        }
-
-        public void RemoveNote()
-        {
-
-        }
-
-        public void ShowNote()
-        {
-
-        }
-
-        public void ShowAllNotes()
-        {
-
+            return $"{Id} {Surname} {Name} {Phone}";
         }
     }
 }
