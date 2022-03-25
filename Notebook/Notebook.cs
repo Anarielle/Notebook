@@ -40,7 +40,7 @@ namespace Notebook
                     choice = Console.ReadLine();
                     if (choice != "create" && choice != "show" && choice != "edit" && choice != "del" && choice != "all" && choice != "exit")
                     {
-                        Console.Clear();
+                        //Console.Clear();
                         Console.Write("Данной команды не найдено! Попробуйте ещё раз: ");
                     }
                     else
@@ -78,7 +78,7 @@ namespace Notebook
             }
         }
 
-        int id = 0;
+        private int id = 0;
         private void CreateNote()
         {
             Note note = new Note() { Id = id };
@@ -94,7 +94,6 @@ namespace Notebook
 
             allNotes.Add(id, note);
             id++;
-            Action();
         }
         private void ReadNote()
         {
@@ -116,7 +115,6 @@ namespace Notebook
                 }
             }
             Console.WriteLine(allNotes[id]);
-            Action();
         }
 
         private void UpdateNote()
@@ -208,7 +206,6 @@ namespace Notebook
                     }
                 }
             }
-            Action();
         }
         private void DeleteNote()
         {
@@ -231,7 +228,7 @@ namespace Notebook
             }
             allNotes.Remove(id);
             Console.WriteLine($"Запись {id} удалена!");
-            Action();
+            id--;
         }
 
         private void ShowAllNotes()
@@ -240,7 +237,6 @@ namespace Notebook
             {
                 Console.WriteLine(item.Value.ToShortString());
             }
-            Action();
         }
 
         private string ReadUntilValidationPass(string property)
