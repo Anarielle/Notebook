@@ -6,10 +6,6 @@ using System.Threading.Tasks;
 
 namespace Notebook
 {
-    /*
-    * Очередное приключение в Рейд-режиме ждёт! Условия и задачи текущей стадии находятся в файле Conditions.txt.
-    */
-
     public class Notebook
     {
         public Dictionary<int, Note> allNotes = new Dictionary<int, Note>();
@@ -28,6 +24,7 @@ namespace Notebook
             Console.WriteLine("\t- для просмотра списка всех записей введите команду: all.");
             Console.WriteLine("\t- для выхода из программы введите команду: exit.");
         }
+
         private void Action()
         {
             while (true)
@@ -40,7 +37,6 @@ namespace Notebook
                     choice = Console.ReadLine();
                     if (choice != "create" && choice != "show" && choice != "edit" && choice != "del" && choice != "all" && choice != "exit")
                     {
-                        //Console.Clear();
                         Console.Write("Данной команды не найдено! Попробуйте ещё раз: ");
                     }
                     else
@@ -51,28 +47,22 @@ namespace Notebook
                 switch (choice)
                 {
                     case "create":
-                        //Console.WriteLine("Создание");
                         CreateNote();
                         break;
                     case "show":
                         ReadNote();
-                        // Console.WriteLine("Показ");
                         break;
                     case "edit":
                         UpdateNote();
-                        // Console.WriteLine("Редактирование");
                         break;
                     case "del":
                         DeleteNote();
-                        //  Console.WriteLine("Удаление");
                         break;
                     case "all":
                         ShowAllNotes();
-                        //   Console.WriteLine("Всё");
                         break;
                     case "exit":
                         return;
-                        //  Console.WriteLine("Выход");
 
                 }
             }
@@ -93,10 +83,17 @@ namespace Notebook
             note.Remark = ReadUntilValidationPass("Remark");
 
             allNotes.Add(id, note);
+            Console.WriteLine($"Запись успешно создана! Номер записи {id}\n");
             id++;
         }
         private void ReadNote()
         {
+            if (allNotes.Count == 0)
+            {
+                Console.WriteLine($"Вы еще не создали ни одной записи!\n");
+                return;
+            }
+
             Console.Write("Введите Id записи: ");
             int id;
             while (true)
@@ -104,11 +101,6 @@ namespace Notebook
                 if (!int.TryParse(Console.ReadLine(), out id))
                 {
                     Console.WriteLine("Введен некорректный идентификатор!");
-                }
-                else if (allNotes.Count == 0)
-                {
-                    Console.WriteLine("Вы еще не создали ни одной записи");
-                    return;
                 }
                 else if (!allNotes.ContainsKey(id))
                 {
@@ -124,16 +116,17 @@ namespace Notebook
 
         private void UpdateNote()
         {
+            if (allNotes.Count == 0)
+            {
+                Console.WriteLine($"Вы еще не создали ни одной записи!\n");
+                return;
+            }
+
             Console.Write("Укажите ID записи для редактирования: ");
             if (!int.TryParse(Console.ReadLine(), out int id))
             {
                 Console.WriteLine("Введен некорректный идентификатор!");
-            }
-            else if (allNotes.Count == 0)
-            {
-                Console.WriteLine("Вы еще не создали ни одной записи");
-                return;
-            }
+            }            
             else if (!allNotes.ContainsKey(id))
             {
                 Console.WriteLine("Данной записи не найдено!");
@@ -219,6 +212,11 @@ namespace Notebook
         }
         private void DeleteNote()
         {
+            if (allNotes.Count == 0)
+            {
+                Console.WriteLine($"Вы еще не создали ни одной записи!\n");
+                return;
+            }
             Console.Write("Введите Id записи для удаления: ");
             int id;
             while (true)
@@ -226,12 +224,7 @@ namespace Notebook
                 if (!int.TryParse(Console.ReadLine(), out id))
                 {
                     Console.WriteLine("Введен некорректный идентификатор!");
-                }
-                else if (allNotes.Count == 0)
-                {
-                    Console.WriteLine("Вы еще не создали ни одной записи");
-                    return;
-                }
+                }                
                 else if (!allNotes.ContainsKey(id))
                 {
                     Console.WriteLine("Данной записи не найдено!");
@@ -242,7 +235,7 @@ namespace Notebook
                 }
             }
             allNotes.Remove(id);
-            Console.WriteLine($"Запись {id} удалена!");
+            Console.WriteLine($"Запись {id} удалена!\n");
             id--;
         }
 
@@ -250,7 +243,7 @@ namespace Notebook
         {
             if (allNotes.Count == 0)
             {
-                Console.WriteLine("Вы еще не создали ни одной записи");
+                Console.WriteLine($"Вы еще не создали ни одной записи!\n");
                 return;
             }
             else
