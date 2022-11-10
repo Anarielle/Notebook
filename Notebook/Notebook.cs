@@ -69,7 +69,7 @@ namespace Notebook
             }
         }
 
-        private int id = 0;
+        private int id = 1;
         private void CreateNote()
         {
             Note note = new Note() { Id = id };
