@@ -1,22 +1,18 @@
 # Notebook
 This is a small console application that is a notebook with the ability to create, edit, view and delete entries. This is my first C# project done for educational purposes.
-
-# Записная книжка
-
-Это небольшое консольное приложение, представляющее собой записную книжку с возможностями создавать, редактировать, просматривать и удалять записи. Это мой первый проект на C#, выполненный в учебных целях.
 <br>
 <div align="center">
 
-### Создание записи
+### Create note
 ![Alt text](./Resources/Notebook_app_create.png) 
 
-### Редактирование записи
+### Edit note
 ![Alt text](./Resources/Notebook_app_edit.png)
 
-### Просмотр записи
+### Show note
 ![Alt text](./Resources/Notebook_app_show.png)
 
-### Просмотр всех записей
+### Show all notes
 ![Alt text](./Resources/Notebook_app_showall.png)
 
 </div>
