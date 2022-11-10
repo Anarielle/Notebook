@@ -9,6 +9,7 @@ namespace Notebook
     public class Notebook
     {
         public Dictionary<int, Note> allNotes = new Dictionary<int, Note>();
+        public List<string> commands = new List<string>() { "create", "show", "edit", "del", "all", "exit" };
         public static void Main(string[] args)
         {
             new Notebook().Action();
@@ -35,7 +36,8 @@ namespace Notebook
                 while (true)
                 {
                     choice = Console.ReadLine();
-                    if (choice != "create" && choice != "show" && choice != "edit" && choice != "del" && choice != "all" && choice != "exit")
+
+                    if (!commands.Contains(choice))
                     {
                         Console.Write("Данной команды не найдено! Попробуйте ещё раз: ");
                     }
@@ -63,7 +65,6 @@ namespace Notebook
                         break;
                     case "exit":
                         return;
-
                 }
             }
         }
