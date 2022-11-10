@@ -8,9 +8,15 @@ This is a small console application that is a notebook with the ability to creat
 <div align="center">
 
 ### Создание записи
-![Alt text](./Resources/Notebook_App_1.png) 
+![Alt text](./Resources/Notebook_app_create.png) 
 
 ### Редактирование записи
-![Alt text](./Resources/Notebook_App_3.png)
+![Alt text](./Resources/Notebook_app_edit.png)
+
+### Просмотр записи
+![Alt text](./Resources/Notebook_app_show.png)
+
+### Просмотр всех записей
+![Alt text](./Resources/Notebook_app_showall.png)
 
 </div>
