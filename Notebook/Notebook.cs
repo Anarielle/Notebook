@@ -105,6 +105,11 @@ namespace Notebook
                 {
                     Console.WriteLine("Введен некорректный идентификатор!");
                 }
+                else if (allNotes.Count == 0)
+                {
+                    Console.WriteLine("Вы еще не создали ни одной записи");
+                    return;
+                }
                 else if (!allNotes.ContainsKey(id))
                 {
                     Console.WriteLine("Данной записи не найдено!");
@@ -123,6 +128,11 @@ namespace Notebook
             if (!int.TryParse(Console.ReadLine(), out int id))
             {
                 Console.WriteLine("Введен некорректный идентификатор!");
+            }
+            else if (allNotes.Count == 0)
+            {
+                Console.WriteLine("Вы еще не создали ни одной записи");
+                return;
             }
             else if (!allNotes.ContainsKey(id))
             {
@@ -217,6 +227,11 @@ namespace Notebook
                 {
                     Console.WriteLine("Введен некорректный идентификатор!");
                 }
+                else if (allNotes.Count == 0)
+                {
+                    Console.WriteLine("Вы еще не создали ни одной записи");
+                    return;
+                }
                 else if (!allNotes.ContainsKey(id))
                 {
                     Console.WriteLine("Данной записи не найдено!");
@@ -233,9 +248,17 @@ namespace Notebook
 
         private void ShowAllNotes()
         {
-            foreach (var item in allNotes)
+            if (allNotes.Count == 0)
             {
-                Console.WriteLine(item.Value.ToShortString());
+                Console.WriteLine("Вы еще не создали ни одной записи");
+                return;
+            }
+            else
+            {
+                foreach (var item in allNotes)
+                {
+                    Console.WriteLine(item.Value.ToShortString());
+                }
             }
         }
 
