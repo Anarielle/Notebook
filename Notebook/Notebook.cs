@@ -8,8 +8,8 @@ namespace Notebook
 {
     public class Notebook
     {
-        public Dictionary<int, Note> allNotes = new Dictionary<int, Note>();
-        public List<string> commands = new List<string>() { "create", "show", "edit", "del", "all", "exit" };
+        private Dictionary<int, Note> allNotes = new Dictionary<int, Note>();
+        private List<string> commands = new List<string>() { "create", "show", "edit", "del", "all", "exit" };
         public static void Main(string[] args)
         {
             new Notebook().Action();
@@ -180,6 +180,9 @@ namespace Notebook
                                     break;
                                 case "cancel":
                                     return;
+                                default:
+                                    Console.Write("Команда не найдена! Введите ещё раз: ");
+                                    break;
                             }
                             break;
                         }
@@ -236,8 +239,7 @@ namespace Notebook
                 }
             }
             allNotes.Remove(id);
-            Console.WriteLine($"Запись {id} удалена!\n");
-            id--;
+            Console.WriteLine($"Запись {id} удалена!\n");            
         }
 
         private void ShowAllNotes()
@@ -262,7 +264,7 @@ namespace Notebook
             while (true)
             {
                 string propValue = Console.ReadLine();
-                if (Note.fieldsValidation[property].TryValidate(propValue, out string error))
+                if (Note.FieldsValidation[property].TryValidate(propValue, out string error))
                 {
                     if (string.IsNullOrEmpty(propValue))
                     {

@@ -19,7 +19,8 @@ namespace Notebook
         public string Remark { get; set; }
         public int Id { get; set; }
 
-        public static Dictionary<string, Validation> fieldsValidation = new Dictionary<string, Validation>()
+
+        private static Dictionary<string, Validation> fieldsValidation = new Dictionary<string, Validation>()
         {
             {"Name", new Validation(true, 1, 20, "абвгдеёжзийклмнопрстуфхцчшщъыьэюя -АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ".ToCharArray()) },
             {"Surname", new Validation(true, 1, 20, "абвгдеёжзийклмнопрстуфхцчшщъыьэюя -АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ".ToCharArray()) },
@@ -32,6 +33,12 @@ namespace Notebook
             {"Remark", new Validation(false, 0, 200, "абвгдеёжзийклмнопрстуфхцчшщъыьэюя -АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ0123456789,.?!()\\+=№@'\"&$;:^".ToCharArray()) },
             {"Id", new Validation(true, 1, 10, "0123456789".ToCharArray()) },
         };
+
+        public static Dictionary<string, Validation> FieldsValidation
+        {
+            get { return fieldsValidation; }
+            set { fieldsValidation = value; }
+        }
 
         public override string ToString()
         {
