@@ -8,8 +8,8 @@ namespace Notebook
 {
     public class Notebook
     {
-        private Dictionary<int, Note> allNotes = new Dictionary<int, Note>();
-        private List<string> commands = new List<string>() { "create", "show", "edit", "del", "all", "exit" };
+        private readonly Dictionary<int, Note> allNotes = new Dictionary<int, Note>();
+        private readonly List<string> commands = new List<string> { "create", "show", "edit", "del", "all", "exit" };
         public static void Main(string[] args)
         {
             new Notebook().Action();
@@ -65,14 +65,17 @@ namespace Notebook
                         break;
                     case "exit":
                         return;
+                    default:
+                        Console.Write("Данной команды не найдено! Попробуйте ещё раз: ");
+                        break;
                 }
             }
         }
 
-        private int id = 1;
+        private int count = 1;
         private void CreateNote()
         {
-            Note note = new Note() { Id = id };
+            Note note = new Note { Id = count };
             note.Surname = ReadUntilValidationPass("Surname");
             note.Name = ReadUntilValidationPass("Name");
             note.SecondName = ReadUntilValidationPass("SecondName");
@@ -83,9 +86,9 @@ namespace Notebook
             note.Position = ReadUntilValidationPass("Position");
             note.Remark = ReadUntilValidationPass("Remark");
 
-            allNotes.Add(id, note);
-            Console.WriteLine($"Запись успешно создана! Номер записи {id}\n");
-            id++;
+            allNotes.Add(count, note);
+            Console.WriteLine($"Запись успешно создана! Номер записи {count}\n");
+            count++;
         }
         private void ReadNote()
         {

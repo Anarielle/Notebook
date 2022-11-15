@@ -20,7 +20,7 @@ namespace Notebook
         public int Id { get; set; }
 
 
-        private static Dictionary<string, Validation> fieldsValidation = new Dictionary<string, Validation>()
+        private static Dictionary<string, Validation> fieldsValidation = new Dictionary<string, Validation>
         {
             {"Name", new Validation(true, 1, 20, "абвгдеёжзийклмнопрстуфхцчшщъыьэюя -АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ".ToCharArray()) },
             {"Surname", new Validation(true, 1, 20, "абвгдеёжзийклмнопрстуфхцчшщъыьэюя -АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ".ToCharArray()) },
